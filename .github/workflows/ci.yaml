@@ -21,15 +21,28 @@ jobs:
           echo "ES_URL: ${{ secrets.ES_URL }}"
           echo "ES_API_KEY: ${{ secrets.ES_API_KEY }}"
           echo "ES_INDEX_NAME: ${{ secrets.ES_INDEX_NAME }}"
-      - name: Install Inso CLI
-        run: npm install -g insomnia-inso
+      - name: Run Elasticsearch
+        uses: getong/elasticsearch-action@v1.3
+        with:
+          elasticsearch version: '8.11.0'
+          host port: 9200
+      - name: Setup Inso CLI
+        uses: kong/setup-inso@v2
+        with:
+          inso-version: '11.3.0'
+      - name: Wait for Elasticsearch
+        run: |
+          until curl -s http://localhost:9200 >/dev/null; do
+            echo "Waiting for Elasticsearch..."
+            sleep 3
+          done
       - name: Run Elasticsearch API tests
         run: |
           inso run test \
             --env ES_ENVIRONMENT \
             --verbose
         env:
-          ES_URL: ${{ secrets.ES_URL }}
+          ES_URL: http://localhost:9200
           ES_API_KEY: ${{ secrets.ES_API_KEY }}
           ES_INDEX_NAME: ${{ secrets.ES_INDEX_NAME }}
 
