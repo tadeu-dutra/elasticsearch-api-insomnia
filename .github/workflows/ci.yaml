@@ -24,8 +24,8 @@ jobs:
 
       - name: Run API Collection
         run: |
-          inso run collection "TestOps API Collection" \
-            --workingDir ./TestOps_API_Collection.yaml \
+           run collection "Sample Elasticsearch Collection" \
+            --workingDir ./Elasticsearch_API_Collection.yaml \
             --env "ES_ENVIRONMENT" \
             --env-var "ES_URL=${{ secrets.ES_URL }}" \
             --env-var "ES_API_KEY=${{ secrets.ES_API_KEY }}" \
