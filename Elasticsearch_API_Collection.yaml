@@ -260,3 +260,15 @@ environments:
     created: 1770471172053
     modified: 1770471172053
     isPrivate: false
+  subEnvironments:
+    - name: ES_ENVIRONMENT
+      meta:
+        id: env_013286fd940647dab21ae3caadb57ed4
+        created: 1770471172055
+        modified: 1770471172055
+        isPrivate: false
+        sortKey: 1768750837593
+      data:
+        ES_URL: ""
+        ES_API_KEY: ""
+        ES_INDEX_NAME: ""
