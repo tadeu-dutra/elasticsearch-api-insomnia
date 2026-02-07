@@ -22,11 +22,21 @@ jobs:
           elasticsearch version: '8.11.0'
           host port: 9200
 
+      - name: Install Newman
+        run: npm install -g newman
+
       - name: Run API Collection
         run: |
-           run collection "Sample Elasticsearch Collection" \
-            --workingDir ./Elasticsearch_API_Collection.yaml \
-            --env "ES_ENVIRONMENT" \
-            --env-var "ES_URL=${{ secrets.ES_URL }}" \
-            --env-var "ES_API_KEY=${{ secrets.ES_API_KEY }}" \
-            --env-var "ES_INDEX_NAME=${{ secrets.ES_INDEX_NAME }}"
+          newman run Elasticsearch_API_Collection.yaml \
+            --env-var ES_URL=http://localhost:9200 \
+            --env-var ES_API_KEY=${{ secrets.ES_API_KEY }} \
+            --env-var ES_INDEX_NAME=${{ secrets.ES_INDEX_NAME }}
+
+      # - name: Run API Collection
+      #   run: |
+      #      run collection "Sample Elasticsearch Collection" \
+      #       --workingDir ./Elasticsearch_API_Collection.yaml \
+      #       --env "ES_ENVIRONMENT" \
+      #       --env-var "ES_URL=${{ secrets.ES_URL }}" \
+      #       --env-var "ES_API_KEY=${{ secrets.ES_API_KEY }}" \
+      #       --env-var "ES_INDEX_NAME=${{ secrets.ES_INDEX_NAME }}"
