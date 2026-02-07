@@ -1,0 +1,262 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Sample Elasticsearch Collection
+meta:
+  id: wrk_2e982b8b129049de9cd1f8da9318ea50
+  created: 1770471172047
+  modified: 1770471172047
+  description: ""
+collection:
+  - url: "{{ _.ES_URL }}/{{ _.ES_INDEX_NAME }}/_bulk"
+    name: Bulk Operation with versioning
+    meta:
+      id: req_11978463f07c4cdb899f72ea76dca57a
+      created: 1770475989736
+      modified: 1770487273910
+      isPrivate: false
+      description: ""
+      sortKey: -1770475989736
+    method: POST
+    body:
+      mimeType: application/x-ndjson
+      text: |
+        {"index":{"_index":"{{ _.ES_INDEX_NAME }}", "_id": "1"}}
+        {"field1":"value1"}
+        {"index":{"_index":"{{ _.ES_INDEX_NAME }}", "_id": "2"}}
+        {"field1":"value2"}
+    headers:
+      - name: Authorization
+        value: ApiKey {{ _.ES_API_KEY }}
+      - name: Content-Type
+        value: application/x-ndjson
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.ES_URL }}/{{ _.ES_INDEX_NAME }}/_bulk"
+    name: Bulk Operation without versioning
+    meta:
+      id: req_58f8548fe29045d2a856f49cc555bf71
+      created: 1770481814579
+      modified: 1770487284898
+      isPrivate: false
+      description: ""
+      sortKey: -1770366315006.5
+    method: POST
+    body:
+      mimeType: application/x-ndjson
+      text: |
+        {"index":{"_index":"{{ _.ES_INDEX_NAME }}"}}
+        {"field1":"value1"}
+        {"index":{"_index":"{{ _.ES_INDEX_NAME }}"}}
+        {"field1":"value2"}
+    headers:
+      - name: Authorization
+        value: ApiKey {{ _.ES_API_KEY }}
+      - name: Content-Type
+        value: application/x-ndjson
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.ES_URL }}/{{ _.ES_INDEX_NAME }}/_doc"
+    name: Create a new document
+    meta:
+      id: req_09738984509b4148a3f5b8018dc9aed0
+      created: 1770481934935
+      modified: 1770487294793
+      isPrivate: false
+      description: ""
+      sortKey: -1770311477641.75
+    method: POST
+    body:
+      mimeType: application/x-ndjson
+      text: |-
+        {
+          "@timestamp": "2099-11-15T13:12:00",
+          "message": "GET /search HTTP/1.1 200 1070000",
+          "user": {
+            "id": "kimchy"
+          }
+        }
+    headers:
+      - name: Authorization
+        value: ApiKey {{ _.ES_API_KEY }}
+      - name: Content-Type
+        value: application/x-ndjson
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.ES_URL }}/{{ _.ES_INDEX_NAME }}/_doc/1"
+    name: Update a document
+    meta:
+      id: req_df8ba60532d642839a21a9c2d40c59b6
+      created: 1770482280324
+      modified: 1770487306448
+      isPrivate: false
+      description: ""
+      sortKey: -1770284058959.375
+    method: POST
+    body:
+      mimeType: application/x-ndjson
+      text: |-
+        {
+          "@timestamp": "2099-11-15T13:12:00",
+          "message": "GET /search HTTP/1.1 200 1070000",
+          "user": {
+            "id": "kimchy"
+          }
+        }
+    headers:
+      - name: Authorization
+        value: ApiKey {{ _.ES_API_KEY }}
+      - name: Content-Type
+        value: application/x-ndjson
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.ES_URL }}/{{ _.ES_INDEX_NAME }}/_doc/1"
+    name: Check a document
+    meta:
+      id: req_d343099c336f41a1b5ff2304076d8acf
+      created: 1770482326680
+      modified: 1770487316225
+      isPrivate: false
+      description: ""
+      sortKey: -1770270349618.1875
+    method: HEAD
+    body:
+      mimeType: application/x-ndjson
+      text: ""
+    headers:
+      - name: Authorization
+        value: ApiKey {{ _.ES_API_KEY }}
+      - name: Content-Type
+        value: application/x-ndjson
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.ES_URL }}/{{ _.ES_INDEX_NAME }}/_doc/1"
+    name: Delete a document
+    meta:
+      id: req_cc4de5cf724d4f9caa987f4a002252de
+      created: 1770482415353
+      modified: 1770487339417
+      isPrivate: false
+      description: ""
+      sortKey: -1770263494947.5938
+    method: DELETE
+    body:
+      mimeType: application/x-ndjson
+      text: ""
+    headers:
+      - name: Authorization
+        value: ApiKey {{ _.ES_API_KEY }}
+      - name: Content-Type
+        value: application/x-ndjson
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.ES_URL }}/{{ _.ES_INDEX_NAME }}/_mget"
+    name: Get multiple documents
+    meta:
+      id: req_121883dd415e439fae71a0b923ab414b
+      created: 1770482487395
+      modified: 1770487325927
+      isPrivate: false
+      description: ""
+      sortKey: -1770266922282.8906
+    method: DELETE
+    body:
+      mimeType: application/x-ndjson
+      text: |-
+        {
+          "docs": [
+            {
+              "_id": "1"
+            },
+            {
+              "_id": "2"
+            }
+          ]
+        }
+    headers:
+      - name: Authorization
+        value: ApiKey {{ _.ES_API_KEY }}
+      - name: Content-Type
+        value: application/x-ndjson
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.ES_URL }}/_security/api_key"
+    name: Get API Keys
+    meta:
+      id: req_56a28457fc2c4262b4d7269f723fb08e
+      created: 1770487147525
+      modified: 1770487257446
+      isPrivate: false
+      description: ""
+      sortKey: -1770475989836
+    method: GET
+    body:
+      mimeType: application/x-ndjson
+      text: ""
+    headers:
+      - name: Authorization
+        value: ApiKey {{ _.ES_API_KEY }}
+      - name: Content-Type
+        value: application/x-ndjson
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_b6191389a75ce854c50bfaf1a61d84d6bd07fb5a
+    created: 1770471172056
+    modified: 1770471172056
+environments:
+  name: Base Environment
+  meta:
+    id: env_b6191389a75ce854c50bfaf1a61d84d6bd07fb5a
+    created: 1770471172053
+    modified: 1770471172053
+    isPrivate: false
