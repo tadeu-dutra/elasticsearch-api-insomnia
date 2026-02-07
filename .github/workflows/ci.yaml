@@ -38,9 +38,8 @@ jobs:
           done
       - name: Run Elasticsearch API tests
         run: |
-          inso run test \
-            --env ES_ENVIRONMENT \
-            --verbose
+          inso run collection "Sample Elasticsearch Collection" \
+            --workingDir ./Elasticsearch_API_Collection.yaml
         env:
           ES_URL: http://localhost:9200
           ES_API_KEY: ${{ secrets.ES_API_KEY }}
