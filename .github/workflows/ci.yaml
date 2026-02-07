@@ -21,6 +21,20 @@ jobs:
           echo "ES_URL: ${{ secrets.ES_URL }}"
           echo "ES_API_KEY: ${{ secrets.ES_API_KEY }}"
           echo "ES_INDEX_NAME: ${{ secrets.ES_INDEX_NAME }}"
+      - name: Install Inso CLI
+        run: npm install -g insomnia-inso
+      - name: Run Elasticsearch API tests
+        run: |
+          inso run test \
+            --env ES_ENVIRONMENT \
+            --verbose
+        env:
+          ES_URL: ${{ secrets.ES_URL }}
+          ES_API_KEY: ${{ secrets.ES_API_KEY }}
+          ES_INDEX_NAME: ${{ secrets.ES_INDEX_NAME }}
+
+
+
     # strategy:
     #   matrix:
     #     elasticsearch: ["6.8-SNAPSHOT", "7.x-SNAPSHOT", "8.18.0-SNAPSHOT", "9.0.0-SNAPSHOT"]
