@@ -34,7 +34,6 @@ Navigate to your repository's **Settings** > **Secrets and variables** > **Actio
 
 | Secret Name        | Description                                       |
 | ------------------ | ------------------------------------------------- |
-| `ES_URL`           | The URL of your elasticsearch instance            |
 | `ES_API_KEY`       | Your Katalon API Key                              |
 | `ES_INDEX_NAME`    | Target elasticsearch index name                   |
 | *... (and any others you use)* | |
